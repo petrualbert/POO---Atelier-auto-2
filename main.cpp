@@ -25,8 +25,8 @@ int main() {
         atelier.adaugaAngajat(mecanic2);
 
 
-        Reparatie reparatie(&atelier, &masina, &mecanic, 1700, {"baie ulei", "bloc motor"}, false);
-        Reparatie reparatie2(&atelier, &masina, &mecanic2, 2000, {"pompe servodirectie"}, false);
+        Reparatie reparatie( std::make_shared<Masina>(masina), std::make_shared<Mecanic>(mecanic), std::make_shared<Atelier>(atelier), 1700, {"baie ulei", "bloc motor"}, false);
+        Reparatie reparatie2( std::make_shared<Masina>(masina), std::make_shared<Mecanic>(mecanic2), std::make_shared<Atelier>(atelier), 2000, {"pompe servodirectie"}, false);
 
         std::cout << atelier << '\n';
         std::cout << client << '\n';
@@ -60,12 +60,19 @@ int main() {
         atelier.adaugaRating(1);
         std::cout << atelier << '\n';
 
+        std::cout << "Se afiseaza informatii despre persoanele din intreprindere: \n";
+        for(int i=0; i<atelier.getMAngajati().size();i++)
+        {
+            auto p = atelier.getMAngajati()[i];
+            p->Persoana::afiseazaDetalii();
+        }
+
         return 0;
     }
     catch(std::exception& e)
     {
         std::cout << "Exceptie!\n";
-        std::cout << e.what() << std::endl;
+        std::cout << e.what(); //<< std::endl;
         return -1;
     }
 

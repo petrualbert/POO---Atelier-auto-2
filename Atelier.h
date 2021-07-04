@@ -43,11 +43,20 @@ public:
 
     float getMRating() const;
 
+    void setMRating(float mRating);
+
+    const std::vector<int> &getMNotePrimite() const;
+
+    void setMNotePrimite(const std::vector<int> &mNotePrimite);
+
+    const std::vector<std::shared_ptr<Angajat>> &getMAngajati() const;
+
+    void setMAngajati(const std::vector<std::shared_ptr<Angajat>> &mAngajati);
+
     void adaugaRating(int nota);
 
-    const std::vector<Angajat *> &getMAngajati() const;
 
-    void setMAngajati(const std::vector<Angajat *> &mAngajati);
+
 };
 
 

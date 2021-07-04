@@ -26,26 +26,6 @@ std::ostream &operator<<(std::ostream &os, const Reparatie &reparatie) {
     return os;
 }
 
-Reparatie::Reparatie(Atelier* atelier, Masina *mMasina, Mecanic *mMecanic, int mPretTotal, const std::vector<std::string> &mComponente,
-                     bool mPlataEfectuata) : m_atelier(atelier),
-                                m_masina(mMasina), m_mecanic(mMecanic), m_pret_total(mPretTotal),
-                                             m_componente(mComponente), m_plataEfectuata(mPlataEfectuata) {}
-
-Masina *Reparatie::getMMasina() const {
-    return m_masina;
-}
-
-void Reparatie::setMMasina(Masina *mMasina) {
-    m_masina = mMasina;
-}
-
-Mecanic *Reparatie::getMMecanic() const {
-    return m_mecanic;
-}
-
-void Reparatie::setMMecanic(Mecanic *mMecanic) {
-    m_mecanic = mMecanic;
-}
 
 int Reparatie::getMPretTotal() const {
     return m_pret_total;
@@ -71,10 +51,40 @@ void Reparatie::setMPlataEfectuata(bool mPlataEfectuata) {
     m_plataEfectuata = mPlataEfectuata;
 }
 
-Atelier *Reparatie::getMAtelier() const {
+
+Reparatie::Reparatie(const std::shared_ptr<Masina> &mMasina, const std::shared_ptr<Mecanic> &mMecanic,
+                     const std::shared_ptr<Atelier> &mAtelier, int mPretTotal,
+                     const std::vector<std::string> &mComponente, bool mPlataEfectuata) : m_masina(mMasina),
+                                                                                          m_mecanic(mMecanic),
+                                                                                          m_atelier(mAtelier),
+                                                                                          m_pret_total(mPretTotal),
+                                                                                          m_componente(mComponente),
+                                                                                          m_plataEfectuata(
+                                                                                                  mPlataEfectuata) {}
+
+const std::shared_ptr<Masina> &Reparatie::getMMasina() const {
+    return m_masina;
+}
+
+void Reparatie::setMMasina(const std::shared_ptr<Masina> &mMasina) {
+    m_masina = mMasina;
+}
+
+const std::shared_ptr<Mecanic> &Reparatie::getMMecanic() const {
+    return m_mecanic;
+}
+
+void Reparatie::setMMecanic(const std::shared_ptr<Mecanic> &mMecanic) {
+    m_mecanic = mMecanic;
+}
+
+const std::shared_ptr<Atelier> &Reparatie::getMAtelier() const {
     return m_atelier;
 }
 
-void Reparatie::setMAtelier(Atelier *mAtelier) {
+void Reparatie::setMAtelier(const std::shared_ptr<Atelier> &mAtelier) {
     m_atelier = mAtelier;
 }
+
+
+

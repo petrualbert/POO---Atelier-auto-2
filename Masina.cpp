@@ -15,9 +15,7 @@ Client *Masina::getMPosesor() const {
     return m_posesor;
 }
 
-void Masina::setMPosesor(Client *mPosesor) {
-    m_posesor = mPosesor;
-}
+
 
 const std::string &Masina::getMarca() const {
     return marca;

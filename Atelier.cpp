@@ -111,10 +111,33 @@ void Atelier::concediazaAngajat(const Angajat &angajat) {
 
 }
 
+
 void Atelier::adaugaAngajat(Angajat &angajat) {
     m_angajati.push_back(std::make_shared<Angajat>(angajat));
 }
 
 Atelier::Atelier(const std::string &mNumeAtelier, int mCont, const std::vector<std::shared_ptr<Angajat>> &mAngajati)
         : m_nume_atelier(mNumeAtelier), m_cont(mCont), m_angajati(mAngajati) {}
+
+
+
+void Atelier::setMRating(float mRating) {
+    m_rating = mRating;
+}
+
+const std::vector<int> &Atelier::getMNotePrimite() const {
+    return m_note_primite;
+}
+
+void Atelier::setMNotePrimite(const std::vector<int> &mNotePrimite) {
+    m_note_primite = mNotePrimite;
+}
+
+const std::vector<std::shared_ptr<Angajat>> &Atelier::getMAngajati() const {
+    return m_angajati;
+}
+
+void Atelier::setMAngajati(const std::vector<std::shared_ptr<Angajat>> &mAngajati) {
+    m_angajati = mAngajati;
+}
 

@@ -10,31 +10,32 @@
 
 class Reparatie {
 private:
-    Masina* m_masina;
-    Mecanic* m_mecanic;
-    Atelier* m_atelier;
+    std::shared_ptr<Masina> m_masina;
+    std::shared_ptr<Mecanic> m_mecanic;
+    std::shared_ptr<Atelier> m_atelier;
     int m_pret_total;
     std::vector<std::string> m_componente;
     bool m_plataEfectuata = false;
 
 public:
-    Reparatie(Atelier* atelier, Masina *mMasina, Mecanic *mMecanic, int mPretTotal, const std::vector<std::string> &mComponente,
+    Reparatie(const std::shared_ptr<Masina> &mMasina, const std::shared_ptr<Mecanic> &mMecanic,
+              const std::shared_ptr<Atelier> &mAtelier, int mPretTotal, const std::vector<std::string> &mComponente,
               bool mPlataEfectuata);
 
-    Masina *getMMasina() const;
 
-    Atelier *getMAtelier() const;
+    const std::shared_ptr<Masina> &getMMasina() const;
 
-    void setMAtelier(Atelier *mAtelier);
+    void setMMasina(const std::shared_ptr<Masina> &mMasina);
 
-    void setMMasina(Masina *mMasina);
+    const std::shared_ptr<Mecanic> &getMMecanic() const;
 
-    Mecanic *getMMecanic() const;
+    void setMMecanic(const std::shared_ptr<Mecanic> &mMecanic);
 
-    void setMMecanic(Mecanic *mMecanic);
+    const std::shared_ptr<Atelier> &getMAtelier() const;
+
+    void setMAtelier(const std::shared_ptr<Atelier> &mAtelier);
 
     int getMPretTotal() const;
-
 
     void setMPretTotal(int mPretTotal);
 
