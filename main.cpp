@@ -63,8 +63,12 @@ int main() {
         std::cout << "Se afiseaza informatii despre persoanele din intreprindere: \n";
         for(int i=0; i<atelier.getMAngajati().size();i++)
         {
+
             auto p = atelier.getMAngajati()[i];
+            if(p == nullptr)
+                throw ("Null pointer in angajati!");
             p->Persoana::afiseazaDetalii();
+
         }
 
         return 0;
@@ -72,7 +76,7 @@ int main() {
     catch(std::exception& e)
     {
         std::cout << "Exceptie!\n";
-        std::cout << e.what(); //<< std::endl;
+        std::cout << e.what() << std::endl;
         return -1;
     }
 
