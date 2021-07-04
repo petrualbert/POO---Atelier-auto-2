@@ -6,6 +6,7 @@
 #include "Angajat.h"
 #include <vector>
 #include <ostream>
+#include <memory>
 
 class Atelier {
 private:
@@ -13,10 +14,10 @@ private:
     int m_cont;
     float m_rating = 0;
     std::vector<int> m_note_primite;
-    std::vector<Angajat*> m_angajati;
+    std::vector<std::shared_ptr<Angajat>> m_angajati;
 
 public:
-    Atelier(const std::string &mNumeAtelier, int mCont, const std::vector<Angajat *> &mAngajati);
+    Atelier(const std::string &mNumeAtelier, int mCont, const std::vector<std::shared_ptr<Angajat>> &mAngajati);
 
     Atelier(const Atelier& ob);
 

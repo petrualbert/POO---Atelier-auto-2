@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ostream>
+#include <iostream>
 
 class Persoana {
 protected:
@@ -21,6 +22,8 @@ public:
     void setMVarsta(int mVarsta);
 
     friend std::ostream &operator<<(std::ostream &os, const Persoana &persoana);
+
+    virtual void afiseazaDetalii();
 };
 
 

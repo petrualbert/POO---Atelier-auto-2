@@ -12,6 +12,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Mecanic &mecanic);
 
+    void afiseazaDetalii();
 };
 
 

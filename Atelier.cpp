@@ -31,13 +31,7 @@ void Atelier::adaugaRating(int nota){
     m_rating = sum / m_note_primite.size();
 }
 
-const std::vector<Angajat *> &Atelier::getMAngajati() const {
-    return m_angajati;
-}
 
-void Atelier::setMAngajati(const std::vector<Angajat *> &mAngajati) {
-    m_angajati = mAngajati;
-}
 
 std::ostream &operator<<(std::ostream &os, const Atelier &atelier) {
     os << "Atelierul " << atelier.m_nume_atelier << " are cont valutar de " << atelier.m_cont << " LEI"
@@ -46,11 +40,7 @@ std::ostream &operator<<(std::ostream &os, const Atelier &atelier) {
     return os;
 }
 
-Atelier::~Atelier() {
-    for(int i=0;i<m_angajati.size();i++)
-        delete m_angajati[i];
-    m_angajati.clear();
-}
+Atelier::~Atelier() = default;
 
 void Atelier::platesteSalariiAngajati() {
     int i = 0;
@@ -71,14 +61,10 @@ void Atelier::platesteSalariiAngajati() {
 Atelier& Atelier::operator=(const Atelier &ob) {
     if(this == &ob)
         return *this;
-    for(int i=0;i<m_angajati.size();i++)
-        delete m_angajati[i];
     m_angajati.clear();
 //     deep copy
     for(auto a : ob.m_angajati)
-    {
-        m_angajati.push_back(new Angajat(*a));
-    }
+        this->m_angajati.push_back(std::make_shared<Angajat>(*a));
 
     m_cont = ob.m_cont;
     m_nume_atelier = ob.m_nume_atelier;
@@ -89,24 +75,16 @@ Atelier& Atelier::operator=(const Atelier &ob) {
 
 Atelier::Atelier(const Atelier &ob)
 {
-    for(int i=0;i<m_angajati.size();i++)
-        delete m_angajati[i];
     m_angajati.clear();
     // deep copy
-    for(auto a : ob.m_angajati)
-    {
-        this->m_angajati.push_back(new Angajat(*a));
-    }
+    for (auto a : ob.m_angajati)
+        this->m_angajati.push_back(std::make_shared<Angajat>(*a));
 
     m_cont = ob.m_cont;
     m_nume_atelier = ob.m_nume_atelier;
     m_rating = ob.m_rating;
     m_note_primite = ob.m_note_primite;
 }
-
-
-Atelier::Atelier(const std::string &mNumeAtelier, int mCont, const std::vector<Angajat *> &mAngajati) : m_nume_atelier(
-        mNumeAtelier), m_cont(mCont), m_angajati(mAngajati) {}
 
 
 
@@ -134,6 +112,9 @@ void Atelier::concediazaAngajat(const Angajat &angajat) {
 }
 
 void Atelier::adaugaAngajat(Angajat &angajat) {
-    Angajat *p = new Angajat(angajat);
-    m_angajati.push_back(p);
+    m_angajati.push_back(std::make_shared<Angajat>(angajat));
 }
+
+Atelier::Atelier(const std::string &mNumeAtelier, int mCont, const std::vector<std::shared_ptr<Angajat>> &mAngajati)
+        : m_nume_atelier(mNumeAtelier), m_cont(mCont), m_angajati(mAngajati) {}
+

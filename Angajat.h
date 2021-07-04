@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ostream>
+#include <memory>
 #include "Persoana.h"
 
 
@@ -13,7 +14,7 @@ protected:
     int m_vechime_ani;
 public:
     Angajat();
-    Angajat(const Angajat& ob);
+    Angajat(std::shared_ptr<Angajat> ob);
 
     Angajat(const std::string &mNume, int mVarsta, const std::string &mDenumireFunctie, int mSalariu, int mVechimeAni);
 
@@ -32,6 +33,8 @@ public:
     void setMVechimeAni(int mVechimeAni);
 
     friend std::ostream &operator<<(std::ostream &os, const Angajat &angajat);
+
+    virtual void afiseazaDetalii();
 };
 
 

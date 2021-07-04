@@ -6,12 +6,12 @@ Angajat::Angajat() : Persoana() {
     this->m_vechime_ani = 0;
 }
 
-Angajat::Angajat(const Angajat &ob) {
-    this->m_nume = ob.getMNume();
-    this->m_salariu = ob.getMSalariu();
-    this->m_varsta = ob.m_varsta;
-    this->m_denumire_functie = ob.getMDenumireFunctie();
-    this->m_vechime_ani = ob.getMVechimeAni();
+Angajat::Angajat(std::shared_ptr<Angajat> ob) {
+    this->m_nume = ob->getMNume();
+    this->m_salariu = ob->getMSalariu();
+    this->m_varsta = ob->m_varsta;
+    this->m_denumire_functie = ob->getMDenumireFunctie();
+    this->m_vechime_ani = ob->getMVechimeAni();
 }
 
 Angajat& Angajat::operator=(const Angajat& ob)
@@ -62,4 +62,9 @@ std::ostream &operator<<(std::ostream &os, const Angajat &angajat) {
     os << "Angajatul " << angajat.m_nume << " cu varsta de " << angajat.m_varsta << " are vechime de " << angajat.m_vechime_ani << " ani"
      << " salariu de " << angajat.m_salariu << " LEI " << " si are functia " << angajat.m_denumire_functie;
     return os;
+}
+
+void Angajat::afiseazaDetalii() {
+        std::cout << "Angajatul " << this->m_nume << " cu varsta de " << this->m_varsta << " are vechime de " << this->m_vechime_ani << " ani"
+                  << " salariu de " << this->m_salariu << " LEI " << " si are functia " << this->m_denumire_functie;
 }
